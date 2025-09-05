@@ -1,0 +1,9 @@
+{
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.19",
+        "phpmailer/phpmailer": "^6.9",
+        "google/cloud-vision": "^1.6",
+        "fortawesome/font-awesome": "^6.7",
+        "phpoffice/phpword": "^1.3"
+    }
+}

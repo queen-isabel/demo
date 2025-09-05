@@ -1,0 +1,27 @@
+RewriteEngine On
+
+
+# ----------------------------------------------------
+# 1. Exclude specific files that you want to access using .php
+# ----------------------------------------------------
+RewriteCond %{REQUEST_URI} !/(logout\.php|sidebar\.html|navbar\.php)$ [NC]
+
+# ----------------------------------------------------
+# 2. Allow direct access to specific files
+# ----------------------------------------------------
+RewriteCond %{REQUEST_URI} ^/examinee/(thank_you\.php)$ [NC]
+RewriteRule .* - [L]
+
+# ----------------------------------------------------
+# 2. Internally rewrite extensionless URLs to .php files
+# ----------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# ----------------------------------------------------
+# 3. Redirect direct .php requests to the extensionless URL
+# ----------------------------------------------------
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteCond %{REQUEST_URI} !/(logout\.php)$ [NC]
+RewriteRule ^ %1 [R=301,L]
